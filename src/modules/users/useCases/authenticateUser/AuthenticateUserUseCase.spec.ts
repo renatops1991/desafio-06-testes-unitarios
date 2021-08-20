@@ -18,33 +18,32 @@ describe("AuthenticateUserUseCase", () => {
   });
 
   it("Should not be able to authenticate if user does not exists", async () => {
-   await expect(async () => {
-      const user = await createUserUseCase.execute({
-        name: "foo",
-        email: "foo@bar.com.br",
-        password: "12345",
-      });
+    const user = await createUserUseCase.execute({
+      name: "foo",
+      email: "foo@bar.com.br",
+      password: "12345",
+    });
 
-      await authenticateUserUseCase.execute({
+    await expect(
+      authenticateUserUseCase.execute({
         email: "bar@foo.com.br",
         password: user.password,
-      });
-    }).rejects.toBeInstanceOf(IncorrectEmailOrPasswordError);
+      })
+    ).rejects.toStrictEqual(new IncorrectEmailOrPasswordError());
   });
 
   it("Should not be able to authenticate if password is wrong", async () => {
-   await expect(async () => {
-      const user = await createUserUseCase.execute({
-        name: "foo",
-        email: "foo@bar.com.br",
-        password: "12345",
-      });
-
-      await authenticateUserUseCase.execute({
+    const user = await createUserUseCase.execute({
+      name: "foo",
+      email: "foo@bar.com.br",
+      password: "12345",
+    });
+    await expect(
+      authenticateUserUseCase.execute({
         email: user.email,
         password: "passwordIsWrong",
-      });
-    }).rejects.toBeInstanceOf(IncorrectEmailOrPasswordError);
+      })
+    ).rejects.toStrictEqual(new IncorrectEmailOrPasswordError());
   });
 
   it("Should be able to authenticate an user", async () => {

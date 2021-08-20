@@ -12,19 +12,19 @@ describe("CreateUserUseCase", () => {
   });
 
   it("Should not be able create a new user with existing email", async () => {
-   await expect(async () => {
-      const user = await createUserUseCase.execute({
-        name: "foo",
-        email: "foo@bar.com.br",
-        password: "123456",
-      });
+    const user = await createUserUseCase.execute({
+      name: "foo",
+      email: "foo@bar.com.br",
+      password: "123456",
+    });
 
-      await createUserUseCase.execute({
+    await expect(
+      createUserUseCase.execute({
         name: "foo",
         email: user.email,
         password: "123455",
-      });
-    }).rejects.toBeInstanceOf(CreateUserError);
+      })
+    ).rejects.toStrictEqual(new CreateUserError());
   });
 
   it("Should be able create a new user", async () => {
@@ -34,6 +34,6 @@ describe("CreateUserUseCase", () => {
       password: "123456",
     });
 
-    expect(expectedUser).toHaveProperty("id");
+    await expect(expectedUser).toHaveProperty("id");
   });
 });
