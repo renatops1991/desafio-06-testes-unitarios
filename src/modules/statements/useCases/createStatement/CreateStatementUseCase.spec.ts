@@ -69,7 +69,7 @@ describe("CreateStatementUseCase", () => {
       password: "123456",
     });
 
-   await createStatementUseCase.execute({
+   await statementRepositoryInMemory.create({
       user_id: user.id,
       type: OperationType.DEPOSIT,
       amount: 20,
