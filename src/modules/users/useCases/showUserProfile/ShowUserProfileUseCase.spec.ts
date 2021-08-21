@@ -25,7 +25,7 @@ describe("ShowUserProfileUseCase", () => {
   });
 
   it("should return all information the authenticated user", async () => {
-    const user= await usersRepositoryInMemory.create({
+    const user = await usersRepositoryInMemory.create({
       name: "foo",
       email: "foo@bar.com.br",
       password: "bar",
