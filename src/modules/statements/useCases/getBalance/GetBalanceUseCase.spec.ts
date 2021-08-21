@@ -29,9 +29,7 @@ describe("GetBalanceUseCase", () => {
       getBalanceUseCase.execute({ user_id: "user" })
     ).rejects.toStrictEqual(new GetBalanceError());
   });
-
-  it("Should not be return the statement user if with_statement is equal false", async () => {});
-
+  
   it("Should return the statement of the user authenticated", async () => {
     const user = await usersRepositoryInMemory.create({
       name: "foo",
