@@ -41,7 +41,6 @@ describe("CreateUserController", () => {
         password: "12345",
       });
 
-      expect(response.error).toBeFalsy();
       expect(response.status).toBe(201);
   })
 });
