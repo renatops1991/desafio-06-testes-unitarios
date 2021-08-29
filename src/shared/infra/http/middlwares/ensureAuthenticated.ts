@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { verify } from 'jsonwebtoken';
+import auth from "../../../../config/auth";
 
 import authConfig from '../../../../config/auth';
 import { JWTInvalidTokenError } from "../../../errors/JWTInvalidTokenError";
@@ -23,7 +24,7 @@ export async function ensureAuthenticated(
   const [, token] = authHeader.split(" ");
 
   try {
-    const { sub: user_id } = verify(token, process.env.JWT_SECRET) as IPayload;
+    const { sub: user_id } = verify(token, auth.jwt.secret) as IPayload;
 
     request.user = {
       id: user_id,
