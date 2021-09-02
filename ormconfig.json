@@ -1,6 +1,10 @@
 {
-  "type": "sqlite",
-  "database": "./src/database/fin_api.sqlite",
+  "type": "postgres",
+  "port": 5432,
+  "host": "localhost",
+  "username": "renato",
+  "password": "re@123",
+  "database": "challenges_ignite",
   "entities": ["./src/modules/**/entities/*.ts"],
   "migrations": ["./src/database/migrations/*.ts"],
   "cli": {
