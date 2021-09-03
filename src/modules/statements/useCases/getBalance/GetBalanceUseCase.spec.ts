@@ -1,7 +1,6 @@
 import { OperationType } from "@modules/statements/entities/Statement";
 import { InMemoryStatementsRepository } from "@modules/statements/repositories/in-memory/InMemoryStatementsRepository";
 import { InMemoryUsersRepository } from "@modules/users/repositories/in-memory/InMemoryUsersRepository";
-import { createStatement } from "typescript";
 import { CreateStatementUseCase } from "../createStatement/CreateStatementUseCase";
 import { GetBalanceError } from "./GetBalanceError";
 import { GetBalanceUseCase } from "./GetBalanceUseCase";
