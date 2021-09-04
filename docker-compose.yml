@@ -10,7 +10,7 @@ services:
     environment:
       - POSTGRES_USER=renato
       - POSTGRES_PASSWORD=re@123
-      - POSTGRES_DB=challenges_ignite
+      - POSTGRES_DB=finapi
     volumes:
       - pgdata:/data/postgres
   app:

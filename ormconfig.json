@@ -4,7 +4,7 @@
   "host": "localhost",
   "username": "renato",
   "password": "re@123",
-  "database": "challenges_ignite",
+  "database": "finapi",
   "entities": ["./src/modules/**/entities/*.ts"],
   "migrations": ["./src/database/migrations/*.ts"],
   "cli": {
