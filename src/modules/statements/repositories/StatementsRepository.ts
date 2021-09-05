@@ -2,6 +2,7 @@ import { getRepository, Repository } from "typeorm";
 
 import { Statement } from "../entities/Statement";
 import { ICreateStatementDTO } from "../useCases/createStatement/ICreateStatementDTO";
+import { ICreateTransferDTO } from "../useCases/createTransfer/ICreateTransferDTO";
 import { IGetBalanceDTO } from "../useCases/getBalance/IGetBalanceDTO";
 import { IGetStatementOperationDTO } from "../useCases/getStatementOperation/IGetStatementOperationDTO";
 import { IStatementsRepository } from "./IStatementsRepository";
@@ -28,6 +29,24 @@ export class StatementsRepository implements IStatementsRepository {
 
     return this.repository.save(statement);
   }
+
+  async createTransfer({
+    user_id,
+    sender_id,
+    type,
+    amount,
+    description,
+  }: ICreateTransferDTO): Promise<Statement>{
+    const statement = this.repository.create({
+      user_id,
+      sender_id,
+      amount,
+      description,
+      type
+    });
+
+    return await this.repository.save(statement);
+  };
 
   async findStatementOperation({ statement_id, user_id }: IGetStatementOperationDTO): Promise<Statement | undefined> {
     return this.repository.findOne(statement_id, {
