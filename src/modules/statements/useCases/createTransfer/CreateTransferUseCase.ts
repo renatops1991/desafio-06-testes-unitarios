@@ -1,4 +1,4 @@
-import { OperationType, Statement } from "@modules/statements/entities/Statement";
+import { Statement } from "@modules/statements/entities/Statement";
 import { IStatementsRepository } from "@modules/statements/repositories/IStatementsRepository";
 import { IUsersRepository } from "@modules/users/repositories/IUsersRepository";
 import { inject, injectable } from "tsyringe";
@@ -36,16 +36,16 @@ export class CreateTransferUseCase {
       user_id,
     });
 
-    if(amount > balance){
-        throw new CreateTransferError.TransferInsufficientFunds();
+    if (amount > balance) {
+      throw new CreateTransferError.TransferInsufficientFunds();
     }
 
     const createTransfer = await this.statementsRepository.createTransfer({
-      user_id,
-      sender_id,
+      user_id: sender_id,
+      sender_id: user_id,
       type,
       amount,
-      description
+      description,
     });
 
     return createTransfer;

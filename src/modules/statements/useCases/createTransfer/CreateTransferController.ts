@@ -23,6 +23,10 @@ export class CreateTransferController {
       description,
     });
 
-    return response.status(201).json(transfer);
+    delete(transfer.user_id);
+
+    return response.status(201).json({
+      transfer
+    });
   }
 }
