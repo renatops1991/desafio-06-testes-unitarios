@@ -12,8 +12,8 @@ describe("CreateUserController", () => {
   });
 
   afterAll(async () => {
-    // await connection.dropDatabase();
-    // await connection.close();
+    await connection.dropDatabase();
+    await connection.close();
   });
 
   it("Should not be able create a new user if user already exists!", async () => {
